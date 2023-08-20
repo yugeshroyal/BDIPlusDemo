@@ -37,11 +37,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpadmin-svc
+  name: phpadmin-nodeport-svc
 spec:
+  type: NodePort
   selector:
     run: phpadmin-pod
   ports:
     - protocol: TCP
       port: 8099
       targetPort: 80
+      nodePort: 31000  # Choose a node port within the range 30000-32767
+
